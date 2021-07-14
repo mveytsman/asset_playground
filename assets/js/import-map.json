@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "phoenix_live_view": "/js/vendored/phoenix_live_view.js",
+    "phoenix": "/js/vendored/phoenix.js",
+    "morphdom": "https://cdn.skypack.dev/morphdom",
+    "phoenix_html": "https://cdn.skypack.dev/phoenix_html",
+    "topbar": "https://cdn.skypack.dev/topbar@1.0.1"
+  }
+}

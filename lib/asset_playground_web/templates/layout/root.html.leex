@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "AssetPlayground", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link phx-track-static rel="stylesheet" href="<%=Routes.static_path(@conn, "/css/app.css")%>"/>
+    <script async phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/vendored/es-module-shims.js") %>"></script>
+    <script type="importmap">
+      <%# Chrome's native implementation doesn't support loading this from a file, so we have to dump it directly %>
+      <%= raw File.read!  Path.join([:code.priv_dir(:asset_playground), "static/js/import-map.json"]) %>
+    </script>
+    <script defer phx-track-static type="module" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
     <header>
