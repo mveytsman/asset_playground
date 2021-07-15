@@ -31,12 +31,14 @@ defmodule Plugs.DepsLoader do
       when method in @allowed_methods do
     segments = subset(at, path_info)
 
-    with {:found, path} <- dep_path(segments, deps),
-         {:ok, content} <- File.read(path) do
-      conn
-      |> put_resp_header("content-type", "application/javascript")
-      |> send_resp(200, content)
-    else
+    case dep_path(segments, deps) do
+      {:found, path} ->
+        content = File.read!(path)
+
+        conn
+        |> put_resp_header("content-type", "application/javascript")
+        |> send_resp(200, content)
+
       {:redirect, path} ->
         conn
         |> put_resp_header("location", path)
