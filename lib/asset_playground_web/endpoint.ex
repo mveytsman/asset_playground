@@ -20,6 +20,19 @@ defmodule AssetPlaygroundWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
+  plug Plugs.DepsLoader,
+    at: "/js/deps",
+    deps: [
+      phoenix: %{base: "./priv/static/", files: ["phoenix.js", "phoenix.js.map"]},
+      phoenix_live_view: %{base: "./priv/static/", files: ["phoenix_live_view.js", "phoenix_live_view.js.map"]},
+      phoenix_html: %{base: "./priv/static/", files: ["phoenix_html.js"]}
+    ]
+
+  plug Plugs.JavascriptRedirector,
+    at: "/js",
+    from: :asset_playground
+
+
   plug Plug.Static,
     at: "/",
     from: :asset_playground,

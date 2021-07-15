@@ -12,11 +12,8 @@ config :asset_playground, AssetPlaygroundWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
+    sh: [
+      "hacky_watcher.sh",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
