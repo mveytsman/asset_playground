@@ -33,11 +33,11 @@ defmodule AssetPlayground.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.9"},
-      {:phoenix_live_view, "~> 0.15.1"},
+      {:phoenix, github: "mveytsman/phoenix", branch: "esbuild", override: true},
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view", branch: "mv-esbuild", override: true},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_html, "~> 2.14", override: true},
+      {:phoenix_live_reload, github: "mveytsman/phoenix_live_reload", branch: "esm", only: :dev},
       {:phoenix_live_dashboard, "~> 0.4"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
